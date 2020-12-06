@@ -12,3 +12,5 @@ paperino
     Ciao a tutti
     </h1>
 </p>
+
+<img src="https://www.topolino.it/wp-content/uploads/2019/11/paperinointera_360.png">
