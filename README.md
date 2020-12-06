@@ -19,8 +19,7 @@ Il progetto consiste nell’implementazione di un servizio meteo che, a seconda 
   <img src="https://github.com/Matteo-Lorenzo/progetti/blob/main/mymagicweather.jpg?raw=true"/>
 </p>
 
-È stato implementato un archivio (**mmwStore**) per raccogliere i dati storici, acquisiti nel tempo, tramite chiamate al data source online di OpenWeather
-
+È stato implementato un archivio (**mmwStore**) per raccogliere i dati storici, acquisiti nel tempo, tramite chiamate al data source online di OpenWeather.
 La chiamata all’API di OpenWeather utilizzata nel nostro applicativo ha questa struttura:
 http://api.openweathermap.org/data/2.5/weather?q={city%20name}&appid={API%20key}
 - city name è il nome della città selezionata
