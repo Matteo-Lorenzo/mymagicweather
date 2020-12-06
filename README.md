@@ -2,7 +2,7 @@
 
 Matteo Lorenzo Bramucci, Agnese Bruglia
 <p>
-  <img src="https://github.com/Matteo-Lorenzo/progetti/banner.png">
+  <img src="https://github.com/Matteo-Lorenzo/progetti/blob/main/banner.png?raw=true">
     <h6 align="center">
       Siamo partiti da qui...
     </h6>
@@ -16,7 +16,7 @@ Il progetto consiste nell’implementazione di un servizio meteo che, a seconda 
 
 # Funzionamento interno
 <p>
-  <img src="https://github.com/Matteo-Lorenzo/progetti/mymagicweather.jpg"/>
+  <img src="https://github.com/Matteo-Lorenzo/progetti/blob/main/mymagicweather.jpg?raw=true"/>
 </p>
 
 È stato implementato un archivio (**mmwStore**) per raccogliere i dati storici, acquisiti nel tempo, tramite chiamate al data source online di OpenWeather
