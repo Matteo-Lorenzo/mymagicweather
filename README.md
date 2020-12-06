@@ -76,13 +76,15 @@ si ottiene come risposta il seguente JSON:
 
 **mmwStore** viene popolato in maniera automatica grazie a **mmwDemon**, che a intervalli prefissati chiama l’API di OpenWeather per acquisire le informazioni riguardanti la nuvolosità per le città preimpostate, relative al momento in cui si effettua la chiamata.
 
-#Finalità del progetto
+# Finalità del progetto
 I possibili utilizzatori di questo servizio sono Aziende il cui business è in qualche modo legato alle condizioni meteo, soprattutto alla presenza o meno di nuvole.
 Ad esempio: aziende produttrici di tende e tendaggi da sole, ombrelli e ombrelloni, agricoltori 2.0, parchi a tema, ecc... :-)
 
-#Come si usa
+# Come si usa
 //TO DO
-#Strumenti software utilizzati
+
+# Strumenti software utilizzati
 //TO DO
-#Modelli vari uml
+
+# Modelli vari uml
 //TO DO
