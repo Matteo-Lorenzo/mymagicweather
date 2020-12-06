@@ -4,7 +4,7 @@ Matteo Lorenzo Bramucci, Agnese Bruglia
 <p>
   <img src="https://github.com/Matteo-Lorenzo/progetti/blob/main/banner.png?raw=true">
     <h6 align="center">
-      Siamo partiti da qui...
+      Siamo partiti da qui
     </h6>
   </img>
 </p>
