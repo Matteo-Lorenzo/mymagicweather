@@ -7,4 +7,8 @@ pippo
 pluto
 paperino
 
-<p align="center"> Ciao a tutti <\p>
+<p align="center">
+  <h1>
+    Ciao a tutti
+    </h1>
+</p>
