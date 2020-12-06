@@ -8,7 +8,7 @@ pluto
 paperino
 
 <p align="center">
-  <h1>
+  <h1 align="center">
     Ciao a tutti
     </h1>
 </p>
