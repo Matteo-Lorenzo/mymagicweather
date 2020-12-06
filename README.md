@@ -4,7 +4,7 @@ Matteo Lorenzo Bramucci, Agnese Bruglia
 <p>
   <img src="https://github.com/Matteo-Lorenzo/progetti/blob/main/banner.png?raw=true">
     <h6 align="center">
-      Siamo partiti da qui
+      Siamo partiti da qui...
     </h6>
   </img>
 </p>
@@ -36,6 +36,8 @@ Il progetto consiste nell’implementazione di un servizio meteo che, a seconda 
 | mmwStatistics | Esecuzione delle statisctiche associate a ciascuna API utilizzando i dati forniti dal Sampler |
 | JSON Maker | Impachettatore in formato standardizzato JSON delle informazione ottenute dal calcolo delle statistiche |
 | Scheduler | Indica a mmwDemon la lunghezza degli intervalli di campionamento in base a specifiche preimpostate |
+
+
 È stato implementato un archivio (**mmwStore**) per raccogliere i dati storici, acquisiti nel tempo, tramite chiamate al data source online di OpenWeather.
 La chiamata all’API di OpenWeather utilizzata nel nostro applicativo ha questa struttura:
 http://api.openweathermap.org/data/2.5/weather?q={city%20name}&appid={API%20key}
