@@ -6,3 +6,5 @@ Progetto per esame di Programmazione a Oggetti AA 2020/2021 M.L.Bramucci-A.Brugl
 pippo
 pluto
 paperino
+
+<p align="center"> Ciao a tutti <\p>
