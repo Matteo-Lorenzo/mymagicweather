@@ -13,7 +13,9 @@ import it.abmlb.mmw.model.Meteo;
 import it.abmlb.mmw.repository.MeteoRepository;
 
 /**
- * @author matteolorenzo
+ * @author matteolorenzo & brugl
+ * 
+ * Classe di test che riempie l'archivio dati, non sarà utilizzata in produzione
  *
  */
 @Component
@@ -25,7 +27,7 @@ public class Runner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Questa è una prova di messaggio di lancio!");
-		//Meteo m1 = new Meteo("Roma", 100000L, 87.2, 18.3, 63.0);
+		
 		//meteoRepository.save(m1);
 		Random generator = new Random();
 		if(false) {
@@ -40,6 +42,7 @@ public class Runner implements CommandLineRunner {
 				meteoRepository.save(meteo);
 			}
 		}
+		
 	}
 
 	private double round(double val) {

@@ -7,23 +7,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+
+import it.abmlb.mmw.utilities.OpenWeatherParser;
+
 import javax.persistence.Id;
 
 /**
- * @author matteolorenzo
+ * @author matteolorenzo & brugl
  * 
- * Descrizione della classe qui
+ * Classe che descrive il modello dei dati contenuti nell'archivio
  *
  */
 @Entity
 @Table(name = "Meteo")
 public class Meteo {
 	/**
-	 * @param cityName scrivere qualcosa in questi campi
-	 * @param epoch
-	 * @param cloudiness
-	 * @param temperature
-	 * @param humidity
+	 * @param cityName Nome della città
+	 * @param epoch Istante temporale delle misurazioni, espresso in formato UNIX
+	 * @param cloudiness Percentuale di nuvolosità
+	 * @param temperature Temperatura media
+	 * @param humidity Percentuale di umidità relativa
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,16 +38,17 @@ public class Meteo {
 	private Double humidity;
 	
 	/**
-	 * 
+	 * Costruttore di default
 	 */
 	public Meteo() {}
 	
 	/**
-	 * @param cityName
-	 * @param epoch
-	 * @param cloudiness
-	 * @param temperature
-	 * @param humidity
+	 * Costruttore con parametri
+	 * @param cityName Nome della città
+	 * @param epoch Istante temporale delle misurazioni, espresso in formato UNIX
+	 * @param cloudiness Percentuale di nuvolosità
+	 * @param temperature Temperatura media
+	 * @param humidity Percentuale di umidità relativa
 	 */
 	public Meteo(String cityName, Long epoch, Double cloudiness, Double temperature, Double humidity) {
 		this.cityName = cityName;
@@ -124,6 +128,15 @@ public class Meteo {
 		this.humidity = humidity;
 	}
 	
-	
+	//da sollevare qui varie eccezioni se qualcosa non va
+	public void getFromOpenWeather(String cityName) {
+		OpenWeatherParser openWeatherParser = new OpenWeatherParser(cityName);
+		openWeatherParser.parse();
+		this.cityName = openWeatherParser.getCityName();
+		this.epoch = openWeatherParser.getEpoch();
+		this.cloudiness = openWeatherParser.getCloudiness();
+		this.temperature = openWeatherParser.getTemperature();
+		this.humidity = openWeatherParser.getHumidity();
+	}
 	
 }

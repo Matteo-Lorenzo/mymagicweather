@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import it.abmlb.mmw.model.Meteo;
 
 /**
- * @author matteolorenzo
+ * @author matteolorenzo & brugl
  *
- * Descrizione dell'interfaccia qui
+ * Interfaccia che descrive il nostro mmwStore, cioè l'archivio dati
  *
  */
 @Repository
