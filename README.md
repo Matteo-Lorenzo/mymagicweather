@@ -9,6 +9,14 @@ Matteo Lorenzo Bramucci, Agnese Bruglia
   </img>
 </p>
 
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/progetti/blob/main/mymagicweather.jpg?raw=true">
+    <h6 align="center">
+        ...prima evoluzione del nostro pensiero...
+      </h6>
+  </img>
+</p>
+
 # Descrizione generale
 Il progetto consiste nell’implementazione di un servizio meteo che, a seconda dell’API scelta:
 - generi delle statistiche riguardanti i valori minimi, massimi, media e varianza della quantità di nuvolosità nel periodo e nella località indicati;
@@ -16,7 +24,7 @@ Il progetto consiste nell’implementazione di un servizio meteo che, a seconda 
 
 # Funzionamento interno
 <p>
-  <img src="https://github.com/Matteo-Lorenzo/progetti/blob/main/mymagicweather.jpg?raw=true">
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwUseCase.jpg?raw=true">
     <h6 align="center">
         Interazioni tra i diversi agenti che costituiscono il sistema
       </h6>
@@ -25,20 +33,22 @@ Il progetto consiste nell’implementazione di un servizio meteo che, a seconda 
 
 | Nome | Descrizione |
 | --- | ---------- |
-| Committente | E' l'utente del nostro servizio |
+| Utente API | E' l'utente del nostro servizio |
+| Statistiche | Endpoint del nostro servizio: Chiamata alle API del nostro applicativo specifiche per il calcolo delle "statistiche" |
+| Andamenti | Endpoint del nostro servizio: Chiamata alle API del nostro applicativo specifiche per il ritorno di "andamenti" |
+| Calcolo delle Statistiche | Esecuzione delle statisctiche per una lista di città in un dato periodo utilizzando i campioni forniti dal selettore |
+| Selezione dei Campioni reali | Selezione dei dati reali dall'archivio storico necessari al calcolo delle statistiche |
+| Archivio dei Campioni reali | Database in memoria popolato dai dati presi da OpenWeather |
+| Acquisizione temporizzata dei Campioni reali | Demone che, a periodi di tempo prestabiliti, invoca l'API di OpenWeather popolando l'archivio |
+| Produzione degli andamenti Temporali | Produzione degli andamenti di una o più grandezze selezionate per una lista di città, in un dato periodo, con una frequenza data |
+| Campionamento con frequenza richiesta | Campiona con la frequenza richiesta la funzione ottenuta attraverso l'interpolatore. Integra il valore campionato con uno score di qualità dello stesso |
+| Interpolazione lineare dei dati reali | Genera una funzione lineare a tratti a partire dalla distribuzione dei campioni selezionati |
+| Gestione delle configurazioni | Acquisizione dei parametri di funzionamento da un file JSON |
+| Amministratore | Si occupa di redigere e manutenere il file JSON delle configurazioni |
 | OpenWeather | Servizio esterno che fornisce le informazioni metereologiche al nostro sistema |
-| mmwStore | Archivio locale dei campioni collezionati da mmwDemon |
-| mmwDemon | Interroga OpenWeather secondo le specifiche dello Scheduler |
-| mmwAPI | Endpoint del nostro servizio |
-| Series Selector | Seleziona i campioni relativi al perido richiesto |
-| Linear Interpolator | Genera una funzione lineare a tratti a partire dalla distribuzione dei campioni selezionati |
-| Sampler | Restituisce la lista dei campioni con la frequenza richiesta estraendoli dalla funzione generata dall'interpolatore lineare. Integra il valore campionato con uno score di qualità dello stesso |
-| mmwStatistics | Esecuzione delle statisctiche associate a ciascuna API utilizzando i dati forniti dal Sampler |
-| JSON Maker | Impachettatore in formato standardizzato JSON delle informazione ottenute dal calcolo delle statistiche |
-| Scheduler | Indica a mmwDemon la lunghezza degli intervalli di campionamento in base a specifiche preimpostate |
 
 
-È stato implementato un archivio (**mmwStore**) per raccogliere i dati storici, acquisiti nel tempo, tramite chiamate al data source online di OpenWeather.
+È stato implementato un archivio per raccogliere i dati storici, acquisiti nel tempo, tramite chiamate al data source online di OpenWeather.
 La chiamata all’API di OpenWeather utilizzata nel nostro applicativo ha questa struttura:
 http://api.openweathermap.org/data/2.5/weather?q={city%20name}&appid={API%20key}
 - city name è il nome della città selezionata
@@ -93,7 +103,7 @@ si ottiene come risposta il seguente JSON:
   }
 ```                      
 
-**mmwStore** viene popolato in maniera automatica grazie a **mmwDemon**, che a intervalli prefissati chiama l’API di OpenWeather per acquisire le informazioni riguardanti la nuvolosità per le città preimpostate, relative al momento in cui si effettua la chiamata.
+L'archivio viene popolato in maniera automatica grazie all'acquisizione temporizzata, che, a intervalli prefissati, chiama l’API di OpenWeather per acquisire le informazioni riguardanti la nuvolosità per le città preimpostate, relative al momento in cui si effettua la chiamata.
 
 # Finalità del progetto
 I possibili utilizzatori di questo servizio sono Aziende il cui business è in qualche modo legato alle condizioni meteo, soprattutto alla presenza o meno di nuvole.
