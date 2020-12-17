@@ -56,12 +56,8 @@ Il progetto consiste nell’implementazione di un servizio meteo che, a seconda 
   ```json
     {
       "cities": [
-        {
-          "cityname": "Milano"
-        },
-        {
-          "cityname": "Roma"
-        }
+         "Milano",
+         "Roma"
       ],
       "period": {
         "from": "2020-12-02T09:00:00",
@@ -106,13 +102,9 @@ Il progetto consiste nell’implementazione di un servizio meteo che, a seconda 
   ```json
     {
     "cities": [
-      {
-        "cityname": "Milano"
-      },
-      {
-        "cityname": "Roma"
-      }
-    ],
+         "Milano",
+         "Roma"
+      ],
     "period": {
       "from": "2020-12-02T10:15:00",
       "to": "2020-12-02T13:15:00"
@@ -155,29 +147,17 @@ Il progetto consiste nell’implementazione di un servizio meteo che, a seconda 
   http://mymagicweather/config
   L'API richiamata con il metodo HTTP GET ritorna le configurazioni attuali in formato JSON:
   ```json
-    {
-    "cities": [
-      {
-        "cityname": "Milano"
-      },
-      {
-        "cityname": "Roma"
-      }
+    [
+      "Milano",
+      "Roma"
     ]
-    }
   ```
-  L'API viene richiamata con il metodo HTTP POST, il JSON body contiene le configurazioni da settare (nello stesso formato di come vengono lette):
+  SE l'API viene richiamata con il metodo HTTP POST, il JSON body contiene le configurazioni da settare (nello stesso formato di come vengono lette):
   ```json
-    {
-    "cities": [
-      {
-        "cityname": "Milano"
-      },
-      {
-        "cityname": "Roma"
-      }
+    [
+      "Milano",
+      "Roma"
     ]
-    }
   ```
 
 È stato implementato un archivio per raccogliere i dati storici, acquisiti nel tempo, tramite chiamate al data source online di OpenWeather.
@@ -241,11 +221,59 @@ L'archivio viene popolato in maniera automatica grazie all'acquisizione temporiz
 I possibili utilizzatori di questo servizio sono Aziende il cui business è in qualche modo legato alle condizioni meteo, soprattutto alla presenza o meno di nuvole.
 Ad esempio: aziende produttrici di tende e tendaggi da sole, ombrelli e ombrelloni, agricoltori 2.0, parchi a tema, ecc... :-)
 
+# Diagrammi UML
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwUseCase.jpg?raw=true">
+    <h6 align="center">
+        Use Case Diagram
+      </h6>
+  </img>
+</p>
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwClassDiagram.jpg?raw=true">
+    <h6 align="center">
+        Class Diagram
+      </h6>
+  </img>
+</p>
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwLetturaConfigurazioni.jpg?raw=true">
+    <h6 align="center">
+        Sequence Diagram per la lettura delle configurazioni
+      </h6>
+  </img>
+</p>
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwModificaConfigurazioni.jpg?raw=true">
+    <h6 align="center">
+        Sequence Diagram per la modifica delle configurazioni
+      </h6>
+  </img>
+</p>
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwAndamenti.jpg?raw=true">
+    <h6 align="center">
+        Sequence Diagram per la richiesta degli andamenti
+      </h6>
+  </img>
+</p>
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwStatistiche.jpg?raw=true">
+    <h6 align="center">
+        Sequence Diagram per la richiesta delle statistiche
+      </h6>
+  </img>
+</p>
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwRaccoltaDatiDaOpenWeather.jpg?raw=true">
+    <h6 align="center">
+        Sequence Diagram per la raccolta temporizzata dei coampioni da OpenWeather
+      </h6>
+  </img>
+</p>
+
 # Come si usa
 //TO DO
 
 # Strumenti software utilizzati
-//TO DO
-
-# Modelli vari uml
 //TO DO
