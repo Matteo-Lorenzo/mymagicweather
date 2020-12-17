@@ -229,6 +229,12 @@ Ad esempio: aziende produttrici di tende e tendaggi da sole, ombrelli e ombrello
       </h6>
   </img>
 </p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 <p>
   <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwClassDiagram.jpg?raw=true">
     <h6 align="center">
@@ -236,6 +242,26 @@ Ad esempio: aziende produttrici di tende e tendaggi da sole, ombrelli e ombrello
       </h6>
   </img>
 </p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/model.jpg?raw=true">
+    <h6 align="center">
+        Class Diagram per il package model con l'ereditarietà tra Sample e Campione
+      </h6>
+      Si è preferito non implementare questa soluzione perchè avrebbe complicato la gestione del CRUD Repository richiedendo l'utilizzo di tavole collegate
+  </img>
+</p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 <p>
   <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwLetturaConfigurazioni.jpg?raw=true">
     <h6 align="center">
@@ -243,6 +269,12 @@ Ad esempio: aziende produttrici di tende e tendaggi da sole, ombrelli e ombrello
       </h6>
   </img>
 </p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 <p>
   <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwModificaConfigurazioni.jpg?raw=true">
     <h6 align="center">
@@ -250,6 +282,12 @@ Ad esempio: aziende produttrici di tende e tendaggi da sole, ombrelli e ombrello
       </h6>
   </img>
 </p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 <p>
   <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwAndamenti.jpg?raw=true">
     <h6 align="center">
@@ -257,6 +295,12 @@ Ad esempio: aziende produttrici di tende e tendaggi da sole, ombrelli e ombrello
       </h6>
   </img>
 </p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 <p>
   <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwStatistiche.jpg?raw=true">
     <h6 align="center">
@@ -264,6 +308,12 @@ Ad esempio: aziende produttrici di tende e tendaggi da sole, ombrelli e ombrello
       </h6>
   </img>
 </p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 <p>
   <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwRaccoltaDatiDaOpenWeather.jpg?raw=true">
     <h6 align="center">
