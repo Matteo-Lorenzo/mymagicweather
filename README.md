@@ -322,7 +322,7 @@ Ad esempio: aziende produttrici di tende e tendaggi da sole, ombrelli e ombrello
   </img>
 </p>
 
-# Come si usa
+# Come funziona
 //TO DO
 
 # Strumenti software utilizzati
