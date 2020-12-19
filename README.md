@@ -317,7 +317,7 @@ Ad esempio: aziende produttrici di tende e tendaggi da sole, ombrelli e ombrello
 <p>
   <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwRaccoltaDatiDaOpenWeather.jpg?raw=true">
     <h6 align="center">
-        Sequence Diagram per la raccolta temporizzata dei coampioni da OpenWeather
+        Sequence Diagram per la raccolta temporizzata dei campioni da OpenWeather
       </h6>
   </img>
 </p>
