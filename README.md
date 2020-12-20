@@ -31,22 +31,134 @@ Il progetto consiste nell’implementazione di un servizio meteo che, a seconda 
   </img>
 </p>
 
-| Nome | Descrizione |
+| Caso d'uso | Descrizione |
 | --- | ---------- |
 | Utente API | E' l'utente del nostro servizio |
-| Statistiche | Endpoint del nostro servizio: Chiamata alle API del nostro applicativo specifiche per il calcolo delle "statistiche" |
-| Andamenti | Endpoint del nostro servizio: Chiamata alle API del nostro applicativo specifiche per il ritorno di "andamenti" |
+| Statistiche | Endpoint del nostro servizio: Chiamata HTTP POST alle API del nostro applicativo specifiche per il calcolo delle "statistiche" |
+| Andamenti | Endpoint del nostro servizio: Chiamata HTTP POST alle API del nostro applicativo specifiche per il ritorno di "andamenti" |
+| Configurazioni | Endpoint del nostro servizio: Chiamata HTTP GET alle API del nostro applicativo per visualizzare le configurazioni attuali, Chiamata HTTP POST per modificarle |
 | Calcolo delle Statistiche | Esecuzione delle statisctiche per una lista di città in un dato periodo utilizzando i campioni forniti dal selettore |
 | Selezione dei Campioni reali | Selezione dei dati reali dall'archivio storico necessari al calcolo delle statistiche |
 | Archivio dei Campioni reali | Database in memoria popolato dai dati presi da OpenWeather |
 | Acquisizione temporizzata dei Campioni reali | Demone che, a periodi di tempo prestabiliti, invoca l'API di OpenWeather popolando l'archivio |
-| Produzione degli andamenti Temporali | Produzione degli andamenti di una o più grandezze selezionate per una lista di città, in un dato periodo, con una frequenza data |
-| Campionamento con frequenza richiesta | Campiona con la frequenza richiesta la funzione ottenuta attraverso l'interpolatore. Integra il valore campionato con uno score di qualità dello stesso |
+| Produzione degli andamenti Temporali | Produzione degli andamenti di una o più grandezze selezionate per una lista di città, in un dato periodo, con un intervallo dato |
+| Campionamento con intervallo richiesto | Seleziona i valori, con l'intervallo di campionamento richiesto, dalla funzione ottenuta attraverso l'interpolatore. Integra il valore campionato con uno score di qualità dello stesso, assegnato in base alla distanza temporale dal dato reale più vicino |
 | Interpolazione lineare dei dati reali | Genera una funzione lineare a tratti a partire dalla distribuzione dei campioni selezionati |
-| Gestione delle configurazioni | Acquisizione dei parametri di funzionamento da un file JSON |
+| Configuration file | Store su file system di un file JSON contenente le configurazioni |
 | Amministratore | Si occupa di redigere e manutenere il file JSON delle configurazioni |
 | OpenWeather | Servizio esterno che fornisce le informazioni metereologiche al nostro sistema |
 
+#### Modo di utilizzo degli endpoint dell'API di MyMagicWeather
+
+- Endpoint per le statistiche
+  http://mymagicweather/stats
+  L'API deve essere richiamata con il metodo HTTP POST il cui body è un oggetto JSON con il seguente formato:
+  ```json
+    {
+      "cities": [
+         "Milano",
+         "Roma"
+      ],
+      "period": {
+        "from": "2020-12-02T09:00:00",
+        "to": "2020-12-05T09:00:00"
+      },
+      "type": "cloudiness" // [all|cloudiness|temperature|humidity]
+    }
+  ```
+  Per le statistiche si ottiene come risposta il seguente JSON:
+  ```json
+  {
+    "code": 0, // 0 se l'operazione va a buon fine|altro numero se vengono riscontrati errori
+    "info": "Required time: 429 milliseconds", //oppure stringa con descrizione dell'errore riscontrato
+    "result": [
+        {
+            "cityname": "Milano",
+            "type": "cloudiness",
+            "data": {
+              "max": 80.0,
+              "min": 30.0,
+              "average": 55.0,
+              "variance": 100.0,
+            }
+        },
+        {
+            "cityname": "Roma",
+            "type": "cloudiness",
+            "data": {
+              "max": 80.0,
+              "min": 30.0,
+              "average": 55.0,
+              "variance": 100.0,
+            }
+        }
+    ]
+  }
+  ```
+
+- Endpoint per gli andamenti
+  http://mymagicweather/trends
+  L'API deve essere richiamata con il metodo HTTP POST il cui body è un oggetto JSON con il seguente formato:
+  ```json
+    {
+    "cities": [
+         "Milano",
+         "Roma"
+      ],
+    "period": {
+      "from": "2020-12-02T10:15:00",
+      "to": "2020-12-02T13:15:00"
+    },
+    "type": "cloudiness", // [all|cloudiness|temperature|humidity]
+    "interval": 60 // minutes
+    }
+  ```
+  Per gli andamenti si ottiene come risposta il seguente JSON:
+  ```json
+  {
+    "code": 0, // 0 se l'operazione va a buon fine|altro numero se vengono riscontrati errori
+    "info": "Required time: 329 milliseconds", //oppure stringa con descrizione dell'errore riscontrato
+    "result": [
+        {
+            "cityname": "Milano",
+            "type": "cloudiness",
+            "data": [
+               {"datetime": "2020-12-02T10:15:00", "value": 10, "score": "A"},
+               {"datetime": "2020-12-02T11:15:00", "value": 10, "score": "A"},
+               {"datetime": "2020-12-02T12:15:00", "value": 10, "score": "A"},
+               {"datetime": "2020-12-02T13:15:00", "value": 10, "score": "A"}
+            ]
+        },
+        {
+            "cityname": "Roma",
+            "type": "cloudiness",
+            "data": [
+               {"datetime": "2020-12-10T10:15:00", "value": 10, "score": "A"},
+               {"datetime": "2020-12-10T11:15:00", "value": 10, "score": "A"},
+               {"datetime": "2020-12-10T12:15:00", "value": 10, "score": "A"},
+               {"datetime": "2020-12-10T13:15:00", "value": 10, "score": "A"}
+            ]
+        }
+    ]
+  }
+  ```
+  
+- Endpoint per le configurazioni
+  http://mymagicweather/config
+  L'API richiamata con il metodo HTTP GET ritorna le configurazioni attuali in formato JSON:
+  ```json
+    [
+      "Milano",
+      "Roma"
+    ]
+  ```
+  SE l'API viene richiamata con il metodo HTTP POST, il JSON body contiene le configurazioni da settare (nello stesso formato di come vengono lette):
+  ```json
+    [
+      "Milano",
+      "Roma"
+    ]
+  ```
 
 È stato implementato un archivio per raccogliere i dati storici, acquisiti nel tempo, tramite chiamate al data source online di OpenWeather.
 La chiamata all’API di OpenWeather utilizzata nel nostro applicativo ha questa struttura:
@@ -109,11 +221,109 @@ L'archivio viene popolato in maniera automatica grazie all'acquisizione temporiz
 I possibili utilizzatori di questo servizio sono Aziende il cui business è in qualche modo legato alle condizioni meteo, soprattutto alla presenza o meno di nuvole.
 Ad esempio: aziende produttrici di tende e tendaggi da sole, ombrelli e ombrelloni, agricoltori 2.0, parchi a tema, ecc... :-)
 
-# Come si usa
+# Diagrammi UML
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwUseCase.jpg?raw=true">
+    <h6 align="center">
+        Use Case Diagram
+      </h6>
+  </img>
+</p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwClassDiagram.jpg?raw=true">
+    <h6 align="center">
+        Class Diagram
+      </h6>
+  </img>
+</p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/model.jpg?raw=true">
+    <h6 align="center">
+        Class Diagram per il package model con l'ereditarietà tra Sample e Campione
+      </h6>
+      Si è preferito non implementare questa soluzione perchè avrebbe complicato la gestione del CRUD Repository richiedendo l'utilizzo di tavole collegate
+  </img>
+</p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwLetturaConfigurazioni.jpg?raw=true">
+    <h6 align="center">
+        Sequence Diagram per la lettura delle configurazioni
+      </h6>
+  </img>
+</p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwModificaConfigurazioni.jpg?raw=true">
+    <h6 align="center">
+        Sequence Diagram per la modifica delle configurazioni
+      </h6>
+  </img>
+</p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwAndamenti.jpg?raw=true">
+    <h6 align="center">
+        Sequence Diagram per la richiesta degli andamenti
+      </h6>
+  </img>
+</p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwStatistiche.jpg?raw=true">
+    <h6 align="center">
+        Sequence Diagram per la richiesta delle statistiche
+      </h6>
+  </img>
+</p>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<p>
+  <img src="https://github.com/Matteo-Lorenzo/mymagicweather/blob/main/mmwRaccoltaDatiDaOpenWeather.jpg?raw=true">
+    <h6 align="center">
+        Sequence Diagram per la raccolta temporizzata dei campioni da OpenWeather
+      </h6>
+  </img>
+</p>
+
+# Come funziona
 //TO DO
 
 # Strumenti software utilizzati
-//TO DO
-
-# Modelli vari uml
 //TO DO
