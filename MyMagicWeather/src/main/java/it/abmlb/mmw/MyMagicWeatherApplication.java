@@ -28,6 +28,12 @@ public class MyMagicWeatherApplication {
 		SpringApplication.run(MyMagicWeatherApplication.class, args);
 	}
 	
+	/**
+	 * Metodo eseguito alla fine dell'inizializzazione dell'applicativo da
+	 * parte del framework Spring e prima del suo avvio (grazie all'annotazione @PostConstruct)
+	 * Legge dal file application.properties, usando l'interfaccia Environment, le
+	 * configurazioni fisse (non modificabili a runtime)
+	 */
 	@PostConstruct
 	public void init() {
 		StaticConfig.setApikey(env.getProperty("mmw.apikey"));

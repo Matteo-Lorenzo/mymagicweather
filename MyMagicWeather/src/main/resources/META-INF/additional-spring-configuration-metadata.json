@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "mmw.interval",
+    "type": "java.lang.Long",
+    "description": "Intervallo di tempo in millisecondi fra le chiamate a OpenWeather"
+  },
+  {
+    "name": "mmw.offset",
+    "type": "java.lang.Long",
+    "description": "offset in secondi per la gestione delle code dell'interpolatore"
+  },
+  {
+    "name": "mmw.apikey",
+    "type": "java.lang.String",
+    "description": "apikey del servizio OpenWeather"
+  },
+  {
+    "name": "mmw.callopenweather",
+    "type": "java.lang.Boolean",
+    "description": "true esegue la chiamata temporizzata ad OpenWeather per il recupero dei dati"
+  }
+]}
