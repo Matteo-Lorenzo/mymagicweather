@@ -11,10 +11,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import it.abmlb.mmw.services.StaticConfig;
 
 /**
- * @author matteolorenzo & agnese
- * 
  * Classe di bootstrap
- *
+ * 
+ * @author matteolorenzo&agnese
  */
 
 @SpringBootApplication

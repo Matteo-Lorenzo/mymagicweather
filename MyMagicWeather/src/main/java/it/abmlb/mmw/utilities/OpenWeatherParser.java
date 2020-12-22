@@ -3,26 +3,50 @@
  */
 package it.abmlb.mmw.utilities;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.web.client.RestTemplate;
 
+import it.abmlb.mmw.services.StaticConfig;
+
 /**
- * @author matteolorenzo
  *
  * Classe che realizza l'interfacciamento con OpenWeather e parsifica il JSON ricevuto
  * per popolare i suoi campi (attributi)
  *
+ * @author matteolorenzo&agnese
  */
 public class OpenWeatherParser {
-	private String cityName;
-	private Long epoch;
-	private Double cloudiness;
-	private Double temperature;
-	private Double humidity;
+	
 	/**
-	 * @param owInfo
+	 * Nome della città
+	 */
+	private String cityName;
+	/**
+	 * Istante temporale delle misurazioni, espresso in formato UNIX
+	 */
+	private Long epoch;
+	/**
+	 * Percentuale di nuvolosità
+	 */
+	private Double cloudiness;
+	/**
+	 * Temperatura media
+	 */
+	private Double temperature;
+	/**
+	 * Percentuale di umidità relativa
+	 */
+	private Double humidity;
+	
+	private static final Logger logger = LoggerFactory.getLogger(OpenWeatherParser.class);
+	
+	/**
+	 * Costruttore con parametro
+	 * @param cityName Nome della città su cui effettuare la richiesta a OpenWeather
 	 */
 	public OpenWeatherParser(String cityName) {
 		this.cityName = cityName;
@@ -57,15 +81,21 @@ public class OpenWeatherParser {
 	public Double getHumidity() {
 		return humidity;
 	}
-	//anche questa classe potrà lanciare delle eccezioni
+	
+	/**
+	 * Metodo per realizzare l'interfacciamento con OpenWeather
+	 * Parsifica il JSON ricevuto per popolare i suoi campi (attributi)
+	 */
 	public void parse() {
+		
 		JSONParser parser = new JSONParser();
 		JSONObject obj = null;
 		RestTemplate restTemplate = new RestTemplate(); //oggetto che serve per consumare una API REST
 		String result = restTemplate.getForObject(
 				"http://api.openweathermap.org/data/2.5/weather?q="+this.cityName+
-				"&appid=041a6d9c6975da342bee0a5f96c7a290&units=metric&lang=it", String.class);
-		System.out.println(result); //giusto per vedere da console che faccia qualcosa
+				"&appid="+StaticConfig.getApikey()+"&units=metric&lang=it", String.class);
+		logger.info(result); //giusto per vedere da console l'operazione effettuata
+		
 		try {
 			obj = (JSONObject) parser.parse(result);
 			this.cityName = (String) obj.get("name");
@@ -75,8 +105,9 @@ public class OpenWeatherParser {
 			JSONObject main = (JSONObject) obj.get("main");
 			this.temperature = Double.parseDouble(main.get("temp").toString());
 			this.humidity = Double.parseDouble(main.get("humidity").toString());
+		
 		} catch (ParseException e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 		}
 	}
 

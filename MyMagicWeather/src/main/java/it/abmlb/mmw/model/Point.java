@@ -4,23 +4,27 @@
 package it.abmlb.mmw.model;
 
 /**
- * @author matteolorenzo & agnese
  * 
  * Classe che descrive il modello dei punti utilizzati dall'interpolatore lineare
  * per ricavare gli andamenti temporali di una specifca grandezza
- * @implements Comparable 
+ * @implements Comparable
+ * 
+ * @author matteolorenzo&agnese
  *
  */
 public class Point implements Comparable<Point>{
 	
 	/**
-	 * @param x Ascissa che rappresenta la coordinata temporale del punto
-	 * @param y Ordinata che rappresenta la grandezza da interpolare
-	 * @param score Livello di qualità [0.50, 1.0] del punto interpolato
-	 * 
+	 * Ascissa che rappresenta la coordinata temporale del punto
 	 */
 	private Long x;
+	/**
+	 * Ordinata che rappresenta la grandezza da interpolare
+	 */
 	private Double y;
+	/**
+	 * Livello di qualità [0.50, 1.0] del punto interpolato
+	 */
 	private Double score;
 	
 	/**
@@ -80,6 +84,7 @@ public class Point implements Comparable<Point>{
 	 * definire una relazione d'ordine tra i vari punti.
 	 * Questa relazione serve per poter inserire in maniera ordinata i punti nel
 	 * Treeset utilizzato dall'interpolatore
+	 * @param o Punto da comparare
 	 */
 	@Override
 	public int compareTo(Point o) {

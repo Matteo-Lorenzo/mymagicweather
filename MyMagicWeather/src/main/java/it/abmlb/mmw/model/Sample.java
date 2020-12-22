@@ -13,33 +13,44 @@ import it.abmlb.mmw.utilities.OpenWeatherParser;
 import javax.persistence.Id;
 
 /**
- * @author matteolorenzo & agnese
  * 
  * Classe che descrive il modello dei dati contenuti nell'archivio
  * @Entity è un'annotazione che specifica che la classe è un'entità ed è mappata in una database Table.
  * @Table è un'annotazione che specifica il nome della tabella nel database usata per la mappatura.
  *
+ * @author matteolorenzo&agnese
  */
 @Entity
 @Table(name = "Meteo")
 public class Sample {
+	
 	/**
-	 * @param Id identificatore autogenerato dell'entità
-	 * @param cityName Nome della città
-	 * @param epoch Istante temporale delle misurazioni, espresso in formato UNIX
-	 * @param cloudiness Percentuale di nuvolosità
-	 * @param temperature Temperatura media
-	 * @param humidity Percentuale di umidità relativa
+	 * identificatore autogenerato dell'entità
 	 * @Id è un'annotazione che specifica l'identificatore di un'entità e
 	 * @GeneratedValue si occupa di specificare la strategia di generazione per i valori di questi identificatori
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long Id;
+	/**
+	 * Nome della città
+	 */
 	private String cityName;
+	/**
+	 * Istante temporale delle misurazioni, espresso in formato UNIX
+	 */
 	private Long epoch;
+	/**
+	 * Percentuale di nuvolosità
+	 */
 	private Double cloudiness;
+	/**
+	 * Temperatura media
+	 */
 	private Double temperature;
+	/**
+	 * Percentuale di umidità relativa
+	 */
 	private Double humidity;
 	
 	/**

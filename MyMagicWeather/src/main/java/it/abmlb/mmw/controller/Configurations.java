@@ -1,7 +1,7 @@
 /**
  * 
  */
-package it.abmlb.mmw.services;
+package it.abmlb.mmw.controller;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -19,10 +19,12 @@ import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Component;
 
 /**
- * @author matteolorenzo & agnese
+ * 
  * Classe che, richiamata da ConfigurationsAPI, permette di leggere o modificare le configurazioni
  * dinamiche dell'applicativo
  * @Component annotazione che definisce la classe come componente autogestito da Spring
+ * 
+ * @author matteolorenzo&agnese
  */
 @Component
 public class Configurations {
@@ -30,11 +32,14 @@ public class Configurations {
 	private static final Logger logger = LoggerFactory.getLogger(Configurations.class);
 	
 	/**
-	 * @param filePath costante che indica la path dove si trova il file JSON di 
+	 * costante che indica la path dove si trova il file JSON di 
 	 * configurazioni dinamiche
-	 * @param config JSONArray contenente la copia in memoria delle configurazioni
 	 */
-	private final String filePath = "config.json";
+	 private final String filePath = "config.json";
+	
+	 /** 
+	 * JSONArray contenente la copia in memoria delle configurazioni
+	 */
 	private JSONArray config;
 
 	/**
@@ -51,6 +56,7 @@ public class Configurations {
 	 * Se non trova configurazioni in memoria o su file, crea delle configurazioni di default
 	 * @return the config
 	 */
+	@SuppressWarnings("unchecked")
 	public JSONArray getConfig() {
 		
 		if (this.config.size() == 0) {
@@ -96,7 +102,7 @@ public class Configurations {
 		this.config = config;
 		
 		try {
-			FileWriter file = new FileWriter(this.filePath);
+			FileWriter file = new FileWriter(this.filePath); // il file viene aperto in modalità sovrascrittura
 			BufferedWriter bw = new BufferedWriter(file);
             bw.write(config.toJSONString());
             bw.close();

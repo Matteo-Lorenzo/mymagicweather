@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import it.abmlb.mmw.model.Sample;
 
 /**
- * @author matteolorenzo & agnese
  *
  * Interfaccia che descrive e permette di gestire il nostro archivio dati.
  * @extends CrudRepository, interfaccia che fornisce funzionalità sofisticate
@@ -21,6 +20,7 @@ import it.abmlb.mmw.model.Sample;
  * @Repository annotazione che indica che tale classe è un repository,
  * che astrae i metodi di accesso e archiviazione dei dati.
  * 
+ * @author matteolorenzo&agnese
  */
 @Repository
 public interface MeteoRepository extends CrudRepository<Sample, Long> {

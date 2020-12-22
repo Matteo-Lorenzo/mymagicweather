@@ -4,7 +4,7 @@
 package it.abmlb.mmw.exceptions;
 
 /**
- * @author matteolorenzo & agnese
+ * @author matteolorenzo&agnese
  *
  */
 public class MmwTimeTravelException extends Exception {

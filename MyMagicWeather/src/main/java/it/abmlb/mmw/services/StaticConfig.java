@@ -4,20 +4,26 @@
 package it.abmlb.mmw.services;
 
 /**
- * @author matteolorenzo & agnese
+ * 
  * Classe wrapper che con i suoi metodi e attributi statici mette a disposizione
  * anche agli oggetti istanziati dall'applicativo e non autogestiti dal framework
  * le configurazioni presenti in application.properties
+ * 
+ * @author matteolorenzo&agnese
  */
 public class StaticConfig {
 	
 	/**
-	 * @param apikey apikey per il collegamento a OpenWeather
-	 * @param offset offset per gestire le code dell'interpolatore
-	 * @param callOpenWeather flag booleano che attiva/disattiva la lettura schedulata da OpenWeather
+	 * apikey per il collegamento a OpenWeather
 	 */
 	private static String apikey;
+	/**
+	 * offset per gestire le code dell'interpolatore
+	 */
 	private static Long offset;
+	/**
+	 * flag booleano che attiva/disattiva la lettura schedulata da OpenWeather
+	 */
 	private static Boolean callOpenWeather;
 	
 	/**
