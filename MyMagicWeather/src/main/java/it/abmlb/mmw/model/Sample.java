@@ -13,20 +13,25 @@ import it.abmlb.mmw.utilities.OpenWeatherParser;
 import javax.persistence.Id;
 
 /**
- * @author matteolorenzo & brugl
+ * @author matteolorenzo & agnese
  * 
  * Classe che descrive il modello dei dati contenuti nell'archivio
+ * @Entity è un'annotazione che specifica che la classe è un'entità ed è mappata in una database Table.
+ * @Table è un'annotazione che specifica il nome della tabella nel database usata per la mappatura.
  *
  */
 @Entity
 @Table(name = "Meteo")
-public class Meteo {
+public class Sample {
 	/**
+	 * @param Id identificatore autogenerato dell'entità
 	 * @param cityName Nome della città
 	 * @param epoch Istante temporale delle misurazioni, espresso in formato UNIX
 	 * @param cloudiness Percentuale di nuvolosità
 	 * @param temperature Temperatura media
 	 * @param humidity Percentuale di umidità relativa
+	 * @Id è un'annotazione che specifica l'identificatore di un'entità e
+	 * @GeneratedValue si occupa di specificare la strategia di generazione per i valori di questi identificatori
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,7 +45,7 @@ public class Meteo {
 	/**
 	 * Costruttore di default
 	 */
-	public Meteo() {}
+	public Sample() {}
 	
 	/**
 	 * Costruttore con parametri
@@ -50,7 +55,7 @@ public class Meteo {
 	 * @param temperature Temperatura media
 	 * @param humidity Percentuale di umidità relativa
 	 */
-	public Meteo(String cityName, Long epoch, Double cloudiness, Double temperature, Double humidity) {
+	public Sample(String cityName, Long epoch, Double cloudiness, Double temperature, Double humidity) {
 		this.cityName = cityName;
 		this.epoch = epoch;
 		this.cloudiness = cloudiness;
@@ -128,10 +133,14 @@ public class Meteo {
 		this.humidity = humidity;
 	}
 	
-	//da sollevare qui varie eccezioni se qualcosa non va
+	/**
+	 * metodo che si occupa di richiamare il parser per ricevere e assegnare le informazioni
+	 * ottenute come risposta da OpenWeather negli attributi dell'entità Sample
+	 */
 	public void getFromOpenWeather(String cityName) {
 		OpenWeatherParser openWeatherParser = new OpenWeatherParser(cityName);
 		openWeatherParser.parse();
+		
 		this.cityName = openWeatherParser.getCityName();
 		this.epoch = openWeatherParser.getEpoch();
 		this.cloudiness = openWeatherParser.getCloudiness();
