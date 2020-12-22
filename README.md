@@ -458,7 +458,5 @@ Le tre funzionalità principali del nostro applicativo sono:
 - La classe **Configurations** prima modifica le configurazioni presenti nel suo stato interno (attributo) e successivamente modifica il file contenente le stesse, la cui path è indicata all’interno di questa classe. Sia negli attributi interni che nel file di testo è tutto espresso in formato JSON. Infine inoltra un messaggio di feedback alla classe **ConfigurationsAPI**, che sarà positivo se la modifica ha avuto successo, oppure negativo nel caso in cui siano state sollevate delle eccezioni, come ad esempio se l’utente ha espresso la richiesta di modifica in un formato non riconosciuto;
 - La classe **ConfigurationsAPI** inoltra il feedback all’utente che aveva effettuato la richiesta iniziale.
 
-
-
 # Strumenti software utilizzati
 //TO DO
