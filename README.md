@@ -345,7 +345,7 @@ Per usufruire delle sue funzionalità potete collegarvi alle rotte messe a dispo
     {
       "cities": [
          "Milano",
-         "Roma"
+         "Ancona"
       ],
       "period": {
         "from": "2020-12-14 00:00:00",
@@ -374,7 +374,7 @@ Per usufruire delle sue funzionalità potete collegarvi alle rotte messe a dispo
             }
         },
         {
-            "cityname": "Roma",
+            "cityname": "Ancona",
             "type": "cloudiness",
             "data": {
               "max": 80.0,
@@ -397,7 +397,7 @@ Per usufruire delle sue funzionalità potete collegarvi alle rotte messe a dispo
     {
     "cities": [
          "Milano",
-         "Roma"
+         "Ancona"
       ],
     "period": {
       "from": "2020-12-14 10:15:00",
@@ -427,7 +427,7 @@ Per usufruire delle sue funzionalità potete collegarvi alle rotte messe a dispo
             ]
         },
         {
-            "cityname": "Roma",
+            "cityname": "Ancona",
             "type": "cloudiness",
             "data": [
                {"datetime": "2020-12-14 10:15:00", "value": 8, "score": 0.89},
@@ -449,14 +449,14 @@ Per usufruire delle sue funzionalità potete collegarvi alle rotte messe a dispo
   ```json
     [
       "Milano",
-      "Roma"
+      "Ancona"
     ]
   ```
   SE l'API viene richiamata con il metodo HTTP POST, il JSON body contiene le configurazioni da settare (nello stesso formato di come vengono lette):
   ```json
     [
       "Milano",
-      "Roma"
+      "Ancona"
     ]
   ```
 - Endpoint per consultare il database in maniera diretta
